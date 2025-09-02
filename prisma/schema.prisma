@@ -1,0 +1,39 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Order {
+  id          String   @id @default(uuid())
+  pickup      Json
+  dropoff     Json
+  weight      Int
+  windowStart DateTime
+  windowEnd   DateTime
+  status      String   @default("pending")
+  assignments Assignment[]
+}
+
+model Driver {
+  id         String   @id @default(uuid())
+  name       String
+  vehicleCap Int
+  status     String   @default("available")
+  lastLat    Float?
+  lastLng    Float?
+  assignments Assignment[]
+}
+
+model Assignment {
+  id         String   @id @default(uuid())
+  orderId    String
+  driverId   String
+  eta        DateTime
+  assignedAt DateTime @default(now())
+  order      Order    @relation(fields: [orderId], references: [id])
+  driver     Driver   @relation(fields: [driverId], references: [id])
+}

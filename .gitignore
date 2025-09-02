@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+build/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Prisma
+prisma/.env
+prisma/migrations/
+!prisma/migrations/.gitkeep
+
+# Redis
+*.rdb
+dump.rdb
+
+# Editor directories and files
+.idea
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Local development
+.vercel
+.next
+
+# Misc
+*.log
+.cache/
+.temp/
+.tmp/
